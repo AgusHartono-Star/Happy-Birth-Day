@@ -182,7 +182,7 @@ Hari ini merupakan momen bahagia untuk ipin dan semua orang yang menyayanginya �
 
 <p id="text2" class="preview">
 Sedikit ucapan untuk ipin, layaknya sebuah telur dinosaurus yang sudah punah namun hari ini telur itu menetas kembali🐣 hehehehe
-Tepatnya tanggal 25 Februari 2026 menjadi hari lahirnya ipin. Selamat bertumbuh menjadi yang lebih baik setiap harinya, sayangku, cintaku. Panjang umur, rezekinya selalu lancar dan yang penting sehat selalu ya ipin, biar kita bisa sama-sama terus jalani hari yang berganti🥰🥰
+Tepatnya tanggal 25 Februari 2026 menjadi hari lahirnya Ipin. Selamat bertumbuh menjadi yang lebih baik setiap harinya, sayangku, cintaku. Panjang umur, rezekinya selalu lancar dan yang penting sehat selalu ya ipin, biar kita bisa sama-sama terus jalani hari yang berganti🥰🥰
 harapanku dihari ulang tahun ipin apapun yang ipin minta, cari, dan harapkan semoga satu persatu terwujud hari ini dan seterusnya semoga Allah SWT mengabulkan hal-hal baik yang benar-benar diinginkan hati ipin. Happy birthday ipin 🥳🥳 saya bersyukur bisa menjadi bagian dari hidupnya ipin. Ipin cukup ingat dan percaya saya akan selalu ada
 buat ipin disetiap proses, disetiap hari saya selalu sama ipin sekarang dan selamanya.
 
@@ -195,13 +195,13 @@ Lihat selengkapnya
 
 <div class="story">
 <img src="img/foto5.jpeg">
-<p>Silahkan dibaca ipin jangan terburu-buru ini khusus untuk ipin dihari spesialnya 🥳💞</p>
+<p>Silahkan dibaca Ipin jangan terburu-buru ini khusus untuk ipin dihari spesialnya 🥳💞</p>
 <button onclick="nextStory()">next memory →</button>
 </div>
 
 <div class="story">
 <img src="img/foto4.jpeg">
-<p>Kalau waktu itu ipin tidak terima dm ku mungkin sy tdk akan sebahagia seperti sekarang ini☺️☺️
+<p>Kalau waktu itu Ipin tidak terima dm ku mungkin saya tidak akan sebahagia seperti sekarang ini☺️☺️
 
 Rasa terima kasihku kepada sang pencipta sudah dipertemukan dengan seorang perempuan yang indah tak lekang oleh jaman</p>
 <button onclick="nextStory()">next memory →</button>
@@ -209,17 +209,17 @@ Rasa terima kasihku kepada sang pencipta sudah dipertemukan dengan seorang perem
 
 <div class="story">
 <img src="img/foto2.jpeg">
-<p>Hari ini besok sampai seterusnya sy akan selalu seperti ini buat ipin semakin sayang dan akan bertambah terus tiada kata bosan untuk ipin dihidupku 
+<p>Hari ini besok sampai seterusnya saya akan selalu seperti ini buat ipin semakin sayang dan akan bertambah terus tiada kata bosan untuk Ipin dihidupku 
 
-Bahagia selalu ipin sekarang smpai selamanya 💞💞</p>
+Bahagia selalu ipin sekarang sampai selamanya 💞💞</p>
 <button onclick="nextStory()">next memory →</button>
 </div>
 
 <div class="story">
 <img src="img/foto3.jpeg">
-<p>Dan juga permohonan maaf dariku sampai saat ini belum bisa menjadi yg terbaik untuk ipin 
+<p>Dan juga permohonan maaf dariku sampai saat ini belum bisa menjadi yg terbaik untuk Ipin .
 
-Sy akan selalu berusaha untuk semuanya demi ipin💞💞</p>
+Saya akan selalu berusaha untuk semuanya demi ipin💞💞</p>
 <button onclick="nextStory()">last memory →</button>
 </div>
 
@@ -227,12 +227,12 @@ Sy akan selalu berusaha untuk semuanya demi ipin💞💞</p>
 
 <div class="story">
 <img src="img/foto8.jpeg">
-<p id="text7" class="preview"> yg ipin lht skrng ini, merupakan momen yg berharga dihidupku bisa bersama” dengan kluarganya ipin
-Dlu sy hnya sekedar tamu undangan tapi sy berharap akan menjadi bagian dari kluarga ini ☺️
-Terima kasih sudah menerima sy ipin, doa dan harapan untuk ipin semoga bahagia selalu bersama keluarga tercinta 
+<p id="text7" class="preview"> Yang Ipin lihat sekarang ini, merupakan momen yg berharga dihidupku bisa bersama-sama dengan keluarganya Ipin
+Dulu saya hnya sekedar tamu undangan tapi saya berharap akan menjadi bagian dari keluarga ini ☺️
+Terima kasih sudah menerima saya Ipin, doa dan harapan untuk Ipin semoga bahagia selalu bersama keluarga tercinta 
 
-Smoga sang pencipta dan semesta mendukung apa yg menjadi harapan kt nantinya 
-Kita sama” jalani hidup ini dengan saling mendoakan dan menguatkan. Terima kasih Cinta keduaku dan selamanya untuk kalian semua tetap seperti ini tetap bahagia sehat dan panjang umur😊😊💞💞
+Semoga sang pencipta dan semesta mendukung apa yg menjadi harapan kita nantinya 
+Kita sama-sama jalani hidup ini dengan saling mendoakan dan menguatkan. Terima kasih Cinta keduaku dan selamanya untuk kalian semua tetap seperti ini tetap bahagia sehat dan panjang umur😊😊💞💞
 
 Dari tukang parkir 😁🤣.</p>
 <button class="read-btn" onclick="toggleRead(7,this)">Lihat selengkapnya</button>
@@ -289,7 +289,7 @@ let tctx=temp.getContext("2d");
 temp.width=canvas.width*0.8;
 temp.height=canvas.height*0.25;
 
-let fontSize=temp.width/(text.length*0.8);
+let fontSize=Math.min(temp.width/(text.length*0.8),120);
 
 tctx.fillStyle="white";
 tctx.font=`bold ${fontSize}px times new roman`;
