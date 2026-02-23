@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Birthday Surprise</title>
+
+<style>
+body{
+margin:0;
+overflow:hidden;
+background:radial-gradient(circle at bottom,#0b1a2a,#000);
+font-family:Arial;
+}
+
+/* START */
+.center{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+color:white;
+width:90%;
+}
+
+#gift{
+font-size:18vw;
+cursor:pointer;
+animation:float 2s infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+canvas{position:absolute;top:0;left:0;}
+
+#messageBtn{
+position:absolute;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+padding:15px 30px;
+border-radius:30px;
+border:none;
+background:#ffffff22;
+color:white;
+font-size:18px;
+display:none;
+}
+
+/* STORY CARD */
+#card{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+width:90%;
+max-width:420px;
+max-height:85vh;   /* ← INI KUNCINYA */
+overflow-y:auto;   /* ← BISA SCROLL */
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(20px);
+padding:25px;
+border-radius:25px;
+text-align:center;
+color:white;
+transition:.5s;
+box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+
+.story{display:none;}
+.story.active{display:block;}
+
+.story img{
+width:80%;
+max-width:260px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.story p{
+font-size:17px;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+.story button{
+padding:14px 30px;
+border:none;
+border-radius:40px;
+background:linear-gradient(135deg,#ff9ff3,#ff6b81);
+color:white;
+cursor:pointer;
+font-size:16px;
+box-shadow:0 8px 25px rgba(255,105,180,0.4);
+}
+
+.circle-highlight{
+position:absolute;
+
+width:8%;
+height:9%;
+
+border:3px solid #ff6b81;
+border-radius:50%;
+
+animation:pulseCircle 2s infinite;
+box-shadow:0 0 15px #ff6b81;
+
+pointer-events:none;
+
+/* POSISI RELATIVE FOTO */
+top:79%;
+left:39%;
+transform:translate(-50%,-50%);
+opacity:0;
+animation:none !important;
+
+}
+
+
+@keyframes pulseCircle{
+0%{transform:translate(-50%,-50%) scale(1);}
+50%{transform:translate(-50%,-50%) scale(1.2);}
+100%{transform:translate(-50%,-50%) scale(1);}
+}
+
+/* READ MORE FEATURE */
+.preview{
+max-height:110px;
+overflow:hidden;
+position:relative;
+}
+
+.full{
+max-height:none;
+}
+
+.read-btn{
+margin-top:10px;
+background:linear-gradient(135deg,#ffd6f3,#ff6b81);
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="c"></canvas>
+
+<audio id="music" preload="auto">
+<source src="audio/Happy_Birthday_Ipin.mp3" type="audio/mpeg">
+</audio>
+
+<div class="center" id="start">
+<h1>Happy Birthday</h1>
+<div id="gift">🎁</div>
+<p>Tap the gift</p>
+</div>
+
+<button id="messageBtn">Lihat Pesan 🎉</button>
+
+<!-- STORY -->
+<div id="card">
+
+<div class="story active">
+  <div style="position:relative;display:inline-block;">
+    <img src="img/foto1.jpg" style="width:100%;border-radius:20px;">
+    <div class="circle-highlight"></div>
+  </div>
+
+<p>Happy brithday sayangku🥳🥳💞
+Hari ini merupakan momen bahagia untuk ipin dan semua orang yang menyayanginya 😁👏👏</p>
+<button onclick="nextStory()">open this ♡</button>
+</div>
+
+<div class="story">
+<img id="foto2" src="img/foto7.jpeg">
+
+<p id="text2" class="preview">
+Sedikit ucapan untuk ipin, layaknya sebuah telur dinosaurus yang sudah punah namun hari ini telur itu menetas kembali🐣 hehehehe
+Tepatnya tanggal 25 Februari 2026 menjadi hari lahirnya ipin. Selamat bertumbuh menjadi yang lebih baik setiap harinya, sayangku, cintaku. Panjang umur, rezekinya selalu lancar dan yang penting sehat selalu ya ipin, biar kita bisa sama-sama terus jalani hari yang berganti🥰🥰
+harapanku dihari ulang tahun ipin apapun yang ipin minta, cari, dan harapkan semoga satu persatu terwujud hari ini dan seterusnya semoga Allah SWT mengabulkan hal-hal baik yang benar-benar diinginkan hati ipin. Happy birthday ipin 🥳🥳 saya bersyukur bisa menjadi bagian dari hidupnya ipin. Ipin cukup ingat dan percaya saya akan selalu ada
+buat ipin disetiap proses, disetiap hari saya selalu sama ipin sekarang dan selamanya.
+
+Dari Upin🧔🏻‍♀️💞💞</p>
+<button class="read-btn" onclick="toggleRead(2,this)">
+Lihat selengkapnya
+</button>
+<button onclick="nextStory()">next memory →</button>
+</div>
+
+<div class="story">
+<img src="img/foto5.jpeg">
+<p>Silahkan dibaca ipin jangan terburu-buru ini khusus untuk ipin dihari spesialnya 🥳💞</p>
+<button onclick="nextStory()">next memory →</button>
+</div>
+
+<div class="story">
+<img src="img/foto4.jpeg">
+<p>Kalau waktu itu ipin tidak terima dm ku mungkin sy tdk akan sebahagia seperti sekarang ini☺️☺️
+
+Rasa terima kasihku kepada sang pencipta sudah dipertemukan dengan seorang perempuan yang indah tak lekang oleh jaman</p>
+<button onclick="nextStory()">next memory →</button>
+</div>
+
+<div class="story">
+<img src="img/foto2.jpeg">
+<p>Hari ini besok sampai seterusnya sy akan selalu seperti ini buat ipin semakin sayang dan akan bertambah terus tiada kata bosan untuk ipin dihidupku 
+
+Bahagia selalu ipin sekarang smpai selamanya 💞💞</p>
+<button onclick="nextStory()">next memory →</button>
+</div>
+
+<div class="story">
+<img src="img/foto3.jpeg">
+<p>Dan juga permohonan maaf dariku sampai saat ini belum bisa menjadi yg terbaik untuk ipin 
+
+Sy akan selalu berusaha untuk semuanya demi ipin💞💞</p>
+<button onclick="nextStory()">last memory →</button>
+</div>
+
+
+
+<div class="story">
+<img src="img/foto8.jpeg">
+<p id="text7" class="preview"> yg ipin lht skrng ini, merupakan momen yg berharga dihidupku bisa bersama” dengan kluarganya ipin
+Dlu sy hnya sekedar tamu undangan tapi sy berharap akan menjadi bagian dari kluarga ini ☺️
+Terima kasih sudah menerima sy ipin, doa dan harapan untuk ipin semoga bahagia selalu bersama keluarga tercinta 
+
+Smoga sang pencipta dan semesta mendukung apa yg menjadi harapan kt nantinya 
+Kita sama” jalani hidup ini dengan saling mendoakan dan menguatkan. Terima kasih Cinta keduaku dan selamanya untuk kalian semua tetap seperti ini tetap bahagia sehat dan panjang umur😊😊💞💞
+
+Dari tukang parkir 😁🤣.</p>
+<button class="read-btn" onclick="toggleRead(7,this)">Lihat selengkapnya</button>
+<button onclick="closeCard()">❤️</button>
+</div>
+
+</div>
+
+
+<script>
+/* ========================== */
+/* FIREWORKS — ASLI + FIX TIMING */
+/* ========================== */
+
+const canvas=document.getElementById("c");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+}
+resize();
+window.onresize=resize;
+
+let rockets=[],particles=[],textParticles=[];
+
+let colors=["#ff6b81","#ff9ff3","#c56cf0","#feca57","#ff7675","#fd79a8"];
+
+let words=[
+"Happy Birthday",
+"Ipin",
+"I Love You",
+"Dari Upin",
+"Sehat Selalu 🌿",
+"25 Februari"
+];
+
+let textPhase=true;
+let textCount=0;
+
+let openingDone=false;
+
+/* FLAG START */
+let started=false;
+
+
+/* ================= TEXT EXPLOSION ================= */
+
+function createTextExplosion(text,x,y,color){
+
+let temp=document.createElement("canvas");
+let tctx=temp.getContext("2d");
+
+temp.width=canvas.width*0.8;
+temp.height=canvas.height*0.25;
+
+let fontSize=temp.width/(text.length*0.8);
+
+tctx.fillStyle="white";
+tctx.font=`bold ${fontSize}px times new roman`;
+tctx.textAlign="center";
+tctx.textBaseline="middle";
+tctx.fillText(text,temp.width/2,temp.height/2);
+
+let data=tctx.getImageData(0,0,temp.width,temp.height).data;
+
+for(let i=0;i<temp.width;i+=3){
+for(let j=0;j<temp.height;j+=3){
+
+let index=(j*temp.width+i)*4;
+
+if(data[index+3]>128){
+
+textParticles.push({
+x,y,
+tx:x+i-temp.width/2,
+ty:y+j-temp.height/2,
+life:140,
+color
+});
+
+}
+}
+}
+
+}
+
+
+/* ================= ART EXPLOSION ================= */
+
+function createArtExplosion(x,y,color){
+
+let type=Math.floor(Math.random()*4);
+let count=80;
+
+for(let i=0;i<count;i++){
+
+let angle=(Math.PI*2/count)*i;
+let speed=3+Math.random()*2;
+
+let vx,vy;
+
+if(type===0){
+
+vx=Math.cos(angle)*speed;
+vy=Math.sin(angle)*speed;
+
+}
+else if(type===1){
+
+let a=(Math.PI*10/count)*i;
+
+vx=Math.cos(a)*speed;
+vy=Math.sin(a)*speed;
+
+}
+else if(type===2){
+
+let s=angle*2;
+
+vx=Math.cos(s)*speed;
+vy=Math.sin(s)*speed;
+
+}
+else{
+
+let f=Math.sin(angle*6);
+
+vx=Math.cos(angle)*speed*f;
+vy=Math.sin(angle)*speed*f;
+
+}
+
+particles.push({x,y,vx,vy,life:70,color});
+
+}
+
+}
+
+
+/* ================= LAUNCH ================= */
+
+function launch(targetX,text,isOpening=false){
+
+let startX=canvas.width/2;
+
+let dx=targetX-startX;
+
+let color=colors[Math.floor(Math.random()*colors.length)];
+
+rockets.push({
+
+x:startX,
+y:canvas.height,
+
+vx:dx/60,
+
+vy:isOpening?-3:-8,
+
+targetY:isOpening?canvas.height*0.3:80+Math.random()*120,
+
+text,
+
+delay:isOpening?0:Math.random()*40,
+
+color
+
+});
+
+}
+
+
+/* ================= EXPLODE ================= */
+
+function explode(r){
+
+let color=r.color;
+
+createArtExplosion(r.x,r.y,color);
+
+if(textPhase && r.text){
+
+createTextExplosion(r.text,r.x,r.y,color);
+
+textCount++;
+
+if(textCount>6) textPhase=false;
+
+}
+
+if(r.text==="HAPPY BIRTHDAY"){
+openingDone=true;
+}
+
+}
+
+
+/* ================= LOOP ================= */
+
+function loop(){
+
+ctx.fillStyle="rgba(0,0,0,0.25)";
+
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+
+rockets.forEach((r,i)=>{
+
+if(r.delay>0){r.delay--;return;}
+
+r.x+=r.vx;
+r.y+=r.vy;
+
+ctx.fillStyle=r.color;
+
+ctx.fillRect(r.x,r.y,3,14);
+
+if(r.y<=r.targetY){
+
+setTimeout(()=>explode(r),300);
+
+rockets.splice(i,1);
+
+}
+
+});
+
+
+particles.forEach((p,i)=>{
+
+p.x+=p.vx;
+p.y+=p.vy;
+
+p.life--;
+
+ctx.fillStyle=p.color;
+
+ctx.fillRect(p.x,p.y,3,3);
+
+if(p.life<=0)particles.splice(i,1);
+
+});
+
+
+textParticles.forEach((p,i)=>{
+
+p.x+=(p.tx-p.x)*0.08;
+p.y+=(p.ty-p.y)*0.08;
+
+p.life--;
+
+ctx.globalAlpha=p.life/140;
+
+ctx.fillStyle=p.color;
+
+ctx.fillRect(p.x,p.y,2,2);
+
+ctx.globalAlpha=1;
+
+if(p.life<=0)textParticles.splice(i,1);
+
+});
+
+requestAnimationFrame(loop);
+
+}
+
+loop();
+
+
+/* ================= START ================= */
+
+function start(){
+
+if(started) return;
+
+started=true;
+
+
+/* PLAY MUSIC */
+
+const music=document.getElementById("music");
+
+music.currentTime=0;
+
+music.play().catch(()=>{});
+
+
+document.getElementById("start").style.display="none";
+
+
+launch(canvas.width/2,"HAPPY BIRTHDAY",true);
+
+
+let waitOpening=setInterval(()=>{
+
+if(openingDone){
+
+clearInterval(waitOpening);
+
+document.getElementById("messageBtn").style.display="block";
+
+
+setInterval(()=>{
+
+let pos=[
+canvas.width*0.3,
+canvas.width*0.5,
+canvas.width*0.7
+];
+
+
+let x=pos[Math.floor(Math.random()*pos.length)];
+
+
+let txt=textPhase
+?words[Math.floor(Math.random()*words.length)]
+:null;
+
+
+launch(x,txt);
+
+
+},900);
+
+}
+
+},100);
+
+}
+
+
+/* ================= STORY ================= */
+
+let currentStory=0;
+
+
+function nextStory(){
+
+let stories=document.querySelectorAll(".story");
+
+stories[currentStory].classList.remove("active");
+
+currentStory++;
+
+if(currentStory>=stories.length)return;
+
+stories[currentStory].classList.add("active");
+
+}
+
+
+/* ================= SHOW CARD ================= */
+
+function showCard(){
+
+const card=document.getElementById("card");
+
+card.style.transform='translate(-50%,-50%) scale(1)';
+
+setTimeout(()=>{
+
+const circle=document.querySelector(".circle-highlight");
+
+if(circle){
+
+circle.style.transition="opacity 1.5s ease";
+
+circle.style.opacity="1";
+
+}
+
+},1500);
+
+}
+
+
+/* ================= READ MORE ================= */
+
+function toggleRead(id,btn){
+
+const text=document.getElementById("text"+id);
+
+const foto=document.getElementById("foto"+id);
+
+
+if(text.classList.contains("preview")){
+
+text.classList.remove("preview");
+
+text.classList.add("full");
+
+if(foto) foto.style.display="none";
+
+btn.innerText="Tutup";
+
+}
+else{
+
+text.classList.add("preview");
+
+text.classList.remove("full");
+
+if(foto) foto.style.display="block";
+
+btn.innerText="Lihat selengkapnya";
+
+}
+
+}
+
+
+/* ================= EVENTS ================= */
+
+document.getElementById("gift").onclick=start;
+
+messageBtn.onclick=showCard;
+
+
+/* ================= CLOSE CARD ================= */
+
+function closeCard(){
+
+const card=document.getElementById("card");
+
+const startPage=document.getElementById("start");
+
+
+card.style.transform='translate(-50%,-50%) scale(0)';
+
+startPage.style.display="block";
+
+document.getElementById("messageBtn").style.display="none";
+
+
+currentStory=0;
+
+document.querySelectorAll(".story")
+.forEach(s=>s.classList.remove("active"));
+
+document.querySelectorAll(".story")[0]
+.classList.add("active");
+
+
+/* RESET START */
+
+started=false;
+
+}
+
+</script>
+</body>
+</html>
