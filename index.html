@@ -875,8 +875,34 @@ initGallerySlider();
 
 function goHome(){
 
+// Tutup gallery
 document.getElementById("galleryPage").style.display="none";
+
+// Tampilkan halaman awal
 document.getElementById("start").style.display="block";
+
+// Sembunyikan tombol pesan
+document.getElementById("messageBtn").style.display="none";
+
+// Stop interval fireworks
+if(fireworkInterval){
+clearInterval(fireworkInterval);
+fireworkInterval = null;
+}
+
+// Reset state
+started = false;
+openingDone = false;
+textPhase = true;
+textCount = 0;
+
+// Kosongkan semua partikel & rocket
+rockets = [];
+particles = [];
+textParticles = [];
+
+// Bersihkan canvas
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
 }
 let swiper;
@@ -924,5 +950,6 @@ centeredSlides: true
 </script>
 </body>
 </html>
+
 
 
