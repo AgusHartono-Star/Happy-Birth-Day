@@ -873,38 +873,48 @@ initGallerySlider();
 
 }
 
+
 function goHome(){
 
 // Tutup gallery
 document.getElementById("galleryPage").style.display="none";
 
-// Tampilkan halaman awal
+// Tampilkan start page
 document.getElementById("start").style.display="block";
 
 // Sembunyikan tombol pesan
 document.getElementById("messageBtn").style.display="none";
 
-// Stop interval fireworks
+// Reset story ke awal
+currentStory = 0;
+
+const stories = document.querySelectorAll(".story");
+stories.forEach(s => s.classList.remove("active"));
+stories[0].classList.add("active");
+
+// Tutup card
+document.getElementById("card").style.transform='translate(-50%,-50%) scale(0)';
+
+// Stop fireworks
 if(fireworkInterval){
 clearInterval(fireworkInterval);
 fireworkInterval = null;
 }
 
-// Reset state
+// Reset state fireworks
 started = false;
 openingDone = false;
 textPhase = true;
 textCount = 0;
 
-// Kosongkan semua partikel & rocket
+// Bersihkan canvas
 rockets = [];
 particles = [];
 textParticles = [];
-
-// Bersihkan canvas
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 }
+
 let swiper;
 
 function initGallerySlider(){
@@ -950,6 +960,3 @@ centeredSlides: true
 </script>
 </body>
 </html>
-
-
-
