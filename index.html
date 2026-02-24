@@ -227,7 +227,7 @@ Saya akan selalu berusaha untuk semuanya demi Ipin💞💞</p>
 <div class="story">
 <img src="img/foto8.jpeg">
 <p id="text7" class="preview"> Yang Ipin lihat sekarang ini, merupakan momen yg berharga dihidupku bisa bersama-sama dengan keluarganya Ipin.
-Dulu saya hnya sekedar tamu undangan tapi saya berharap akan menjadi bagian dari keluarga ini ☺️.
+Dulu saya hanya sekedar tamu undangan tapi saya berharap akan menjadi bagian dari keluarga ini ☺️.
 Terima kasih sudah menerima saya Ipin, doa dan harapan untuk Ipin semoga bahagia selalu bersama keluarga tercinta.
 Semoga sang pencipta dan semesta mendukung apa yg menjadi harapan kita nantinya.
 Kita sama-sama jalani hidup ini dengan saling mendoakan dan menguatkan.Terima kasih untuk semuanya kalian merupakan cinta kedua dihidupku dan untuk kalian semua tetap seperti ini selalu bahagia sehat dan panjang umur 😊😊💞💞
@@ -275,6 +275,7 @@ let openingDone=false;
 
 /* FLAG START */
 let started=false;
+let fireworkInterval=null;
 
 
 /* ================= TEXT EXPLOSION ================= */
@@ -534,7 +535,7 @@ clearInterval(waitOpening);
 document.getElementById("messageBtn").style.display="block";
 
 
-setInterval(()=>{
+fireworkInterval=setInterval(()=>{
 
 let pos=[
 canvas.width*0.3,
@@ -676,7 +677,9 @@ document.querySelectorAll(".story")[0]
 
 
 /* RESET START */
-
+if(fireworkInterval)
+{clearInterval(fireworkInterval); 
+  fireworkInterval=null;}
 started=false;
 
 }
@@ -684,6 +687,3 @@ started=false;
 </script>
 </body>
 </html>
-
-
-
